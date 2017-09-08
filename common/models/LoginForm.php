@@ -43,7 +43,7 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, '用户名或密码错误');
             }
         }
     }
@@ -75,4 +75,18 @@ class LoginForm extends Model
 
         return $this->_user;
     }
+
+    /**
+     * 属性标签
+     */
+    public function attributeLabels()
+    {
+        return [
+            'username' => '用户名',
+            'password' => '密码',
+            'email' => '邮箱',
+        ];
+    }
+
+
 }
