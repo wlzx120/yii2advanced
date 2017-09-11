@@ -4,6 +4,7 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 
+
 /**
  * Login form
  */
@@ -12,7 +13,7 @@ class LoginForm extends Model
     public $username;
     public $password;
     public $rememberMe = true;
-
+    public $verifyCode;
     private $_user;
 
 
@@ -23,11 +24,13 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username', 'password','verifyCode'], 'required'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -85,6 +88,8 @@ class LoginForm extends Model
             'username' => '用户名',
             'password' => '密码',
             'email' => '邮箱',
+            'verifyCode' => '验证码',
+            'rememberMe' => '记住我',
         ];
     }
 
