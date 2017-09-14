@@ -4,25 +4,27 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Article */
+/* @var $model backend\models\Blog */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="article-form">
+<div class="blog-form">
 
     <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'id')->textInput() ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'author')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'views')->textInput() ?>
 
-    <?= $form->field($model, 'add_time')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'is_delete')->textInput() ?>
 
-    <?= $form->field($model, 'update_time')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'created_at')->textInput() ?>
 
-    <?= $form->field($model, 'column')->textInput() ?>
+    <?= $form->field($model, 'updated_at')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

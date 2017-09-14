@@ -73,6 +73,16 @@ use mdm\admin\components\MenuHelper;
         <ul class="sidebar-menu">
             <li class="treeview">
                 <a href="#">
+                    <i class="fa fa-gears"></i> <span>栏目管理</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/column"><i class="fa fa-circle-o"></i> 栏目列表</a></li>
+                    <li><a href="/column/create"><i class="fa fa-circle-o"></i> 栏目添加</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
                     <i class="fa fa-gears"></i> <span>权限控制</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
