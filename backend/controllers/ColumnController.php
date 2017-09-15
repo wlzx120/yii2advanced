@@ -21,9 +21,9 @@ class ColumnController extends Controller
     {
         return [
             //通过行为实现rbac
-            'as access' => [
-                'class' => 'backend\components\AccessControl',
-            ],
+//            'as access' => [
+//                'class' => 'backend\components\AccessControl',
+//            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

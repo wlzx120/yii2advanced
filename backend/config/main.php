@@ -11,6 +11,7 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
+    /* yii2-admin 配置 + */
     'modules' => [
         "admin" => [
             "class" => "mdm\admin\Module",
@@ -19,6 +20,7 @@ return [
     "aliases" => [
         "@mdm/admin" => "@vendor/mdmsoft/yii2-admin",
     ],
+    /* yii2-admin 配置 - */
     //组件配置
     'components' => [
         'request' => [
@@ -65,22 +67,25 @@ return [
                 "<controller:\w+>/<action:\w+>"=>"<controller>/<action>"
             ],
         ],
-
+        /* yii2-admin 配置 + */
         "authManager" => [
             "class" => 'yii\rbac\DbManager', //这里记得用单引号而不是双引号
             "defaultRoles" => ["guest"],
         ],
+        /* yii2-admin 配置 - */
 
     ],
     'params' => $params,
 //    'as access' => \backend\components\AccessControl::className(),
-//    'as access' => [
-//        'class' => 'mdm\admin\components\AccessControl',
-//        'allowActions' => [
-//            //这里是允许访问的路由
-//            //所有允许
-//            //'*'
-//            //'column/index',
-//        ]
-//    ],
+    /* yii2-admin 配置 + */
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            //这里是允许访问的路由
+            'site/*'
+            //'column/index',
+        ]
+    ],
+    /* yii2-admin 配置 - */
+
 ];

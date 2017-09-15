@@ -22,9 +22,9 @@ class BlogController extends Controller
     {
         return [
             //'myBehavior' => \backend\components\MyBehavior::className(),
-            'as access' => [
-                'class' => 'backend\components\AccessControl',
-            ],
+//            'as access' => [
+//                'class' => 'backend\components\AccessControl',
+//            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
