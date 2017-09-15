@@ -73,13 +73,14 @@ return [
 
     ],
     'params' => $params,
-    'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
-        'allowActions' => [
-            //这里是允许访问的路由
-            //所有允许
-            '*'
-            //'column/index',
-        ]
-    ],
+//    'as access' => \backend\components\AccessControl::className(),
+//    'as access' => [
+//        'class' => 'mdm\admin\components\AccessControl',
+//        'allowActions' => [
+//            //这里是允许访问的路由
+//            //所有允许
+//            //'*'
+//            //'column/index',
+//        ]
+//    ],
 ];
