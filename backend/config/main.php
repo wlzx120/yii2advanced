@@ -16,6 +16,12 @@ return [
         "admin" => [
             "class" => "mdm\admin\Module",
         ],
+        'redactor' => [
+            'class' => 'yii\redactor\RedactorModule',
+            'uploadDir' => './uploads',  // 比如这里可以填写 ./uploads
+            'uploadUrl' => '图片可访问地址',
+            'imageAllowExtensions'=>['jpg','png','gif']
+        ],
     ],
     "aliases" => [
         "@mdm/admin" => "@vendor/mdmsoft/yii2-admin",
@@ -73,7 +79,19 @@ return [
             "defaultRoles" => ["guest"],
         ],
         /* yii2-admin 配置 - */
-
+        /* 主题配置+ */
+//        'view' => [
+//            'theme' => [
+//                // 'basePath' => '@app/themes/spring',
+//                // 'baseUrl' => '@web/themes/spring',
+//                'pathMap' => [
+//                    '@app/views' => [
+//                        '@app/themes/spring',
+//                    ]
+//                ],
+//            ],
+//        ],
+        /* 主题配置- */
     ],
     'params' => $params,
 //    'as access' => \backend\components\AccessControl::className(),
@@ -87,5 +105,10 @@ return [
         ]
     ],
     /* yii2-admin 配置 - */
+    /* 主题行为+ */
+//    'as theme' => [
+//       // 'class' => 'backend\components\ThemeControl',
+//    ],
+    /* 主题行为- */
 
 ];

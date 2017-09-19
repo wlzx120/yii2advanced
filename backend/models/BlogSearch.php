@@ -18,7 +18,7 @@ class BlogSearch extends Blog
     public function rules()
     {
         return [
-            [['id', 'views', 'is_delete'], 'integer'],
+            [['id', 'views'], 'integer'],
             [['title', 'content', 'created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -61,7 +61,6 @@ class BlogSearch extends Blog
         $query->andFilterWhere([
             'id' => $this->id,
             'views' => $this->views,
-            'is_delete' => $this->is_delete,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

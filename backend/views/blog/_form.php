@@ -12,15 +12,14 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id')->textInput() ?>
-
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'views')->textInput() ?>
-
-    <?= $form->field($model, 'is_delete')->textInput() ?>
+    <?= $form->field($model, 'content')->widget('common\widgets\ueditor\Ueditor',[
+        'options'=>[
+            'initialFrameWidth' => '100%',
+            'initialFrameHeight' => '500',
+        ]
+    ]) ?>
 
     <?= $form->field($model, 'created_at')->textInput() ?>
 

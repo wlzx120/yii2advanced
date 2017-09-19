@@ -21,15 +21,11 @@ class BlogController extends Controller
     public function behaviors()
     {
         return [
-            //'myBehavior' => \backend\components\MyBehavior::className(),
-//            'as access' => [
-//                'class' => 'backend\components\AccessControl',
-//            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','delete'],
+                        'actions' => ['index','view','create','update','delete','ueditor'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -47,11 +43,21 @@ class BlogController extends Controller
     public function beforeAction($action)
     {
         parent::beforeAction($action);
-//        $currentRoute = $action->getUniqueId();
-//        if(!Yii::$app->user->can('/'.$currentRoute)){
-//            throw new \yii\web\ForbiddenHttpException('没有权限访问');
-//        }
         return true;
+    }
+
+    //ueditor
+    public function actions(){
+        return [
+            'ueditor'=>[
+                'class' => 'common\widgets\ueditor\UeditorAction',
+                'config'=>[
+                    //上传图片配置
+                    'imageUrlPrefix' => "", /* 图片访问路径前缀 */
+                    'imagePathFormat' => "/images/{yyyy}{mm}{dd}/{time}{rand:6}", /* 上传保存路径,可以自定义保存路径和文件名格式 */
+                ]
+            ]
+        ];
     }
 
     /**
@@ -60,12 +66,6 @@ class BlogController extends Controller
      */
     public function actionIndex()
     {
-//        $myBehavior = $this->getBehavior('myBehavior');
-//        $isGuest = $this->isGuest();
-//        var_dump($isGuest);
-//        if(!Yii::$app->user->can('/blog/index')){
-//            throw new \yii\web\ForbiddenHttpException('没有权限访问');
-//        }
         $searchModel = new BlogSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 

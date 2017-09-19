@@ -28,8 +28,14 @@ class Column extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'string', 'max' => 11],
+
+            [['file', 'file2'], 'required'],
+            [['file', 'file2'], 'safe'],
+            [['file'], 'string', 'max' => 255],
+
         ];
     }
 
@@ -40,9 +46,9 @@ class Column extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'name' => '栏目名称',
+            'created_at' => '添加时间',
+            'updated_at' => '更新时间t',
         ];
     }
 }

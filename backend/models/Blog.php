@@ -11,7 +11,6 @@ use Yii;
  * @property string $title
  * @property string $content
  * @property integer $views
- * @property integer $is_delete
  * @property string $created_at
  * @property string $updated_at
  */
@@ -31,11 +30,8 @@ class Blog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'content', 'created_at', 'updated_at'], 'required'],
-            [['id', 'views', 'is_delete'], 'integer'],
-            [['content'], 'string'],
-            [['created_at', 'updated_at'], 'safe'],
-            [['title'], 'string', 'max' => 100],
+            [[ 'content','title'], 'required'],
+            [['content','title'], 'string'],
         ];
     }
 
@@ -46,12 +42,11 @@ class Blog extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'views' => 'Views',
-            'is_delete' => 'Is Delete',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'title' => '标题',
+            'content' => '内容',
+            'views' => '点击量',
+            'created_at' => '添加时间',
+            'updated_at' => '修改时间',
         ];
     }
 }

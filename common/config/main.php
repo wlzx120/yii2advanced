@@ -4,7 +4,7 @@ return [
     //配置语言
     'language'=>'zh-CN',
     //配置时区
-    'timeZone'=>'Asia/ShangHai',
+    'timeZone'=>'Asia/ChongQing',
     //组件配置
     'components' => [
         //配置缓存
