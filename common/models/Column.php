@@ -51,4 +51,5 @@ class Column extends \yii\db\ActiveRecord
             'updated_at' => '更新时间t',
         ];
     }
+
 }

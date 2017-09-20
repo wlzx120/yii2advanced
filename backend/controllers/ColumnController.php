@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use Illuminate\Support\Facades\Request;
 use Yii;
 use common\models\Column;
 use common\models\ColumnSearch;
@@ -10,12 +11,23 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\components\Upload;
 use yii\web\Response;
+use common\components\MailEvent;
 
 /**
  * ColumnController implements the CRUD actions for Column model.
  */
 class ColumnController extends Controller
 {
+    //定义事件
+    const EVENT_TEST = 'event_test';
+    const EVENT_EMAIL = 'event_email';
+    public function init()
+    {
+        parent::init();
+        //事件绑定
+        $this->on(self::EVENT_TEST,['backend\components\EventTestController','doEvent']);
+        $this->on(self::EVENT_EMAIL,['common\models\Mail','sendEmail']);
+    }
     /**
      * @inheritdoc
      */
@@ -146,5 +158,21 @@ class ColumnController extends Controller
             return ['code' => 1, 'msg' => $e->getMessage()];
         }
     }
+
+    public function actionTest()
+    {
+        return $this->trigger(self::EVENT_TEST);
+    }
+
+    public function actionSendEmail()
+    {
+        // 触发邮件事件
+        $event = new MailEvent;
+        $event->email = '270077706@qq.com';
+        $event->subject = '事件邮件测试';
+        $event->content = '邮件测试内容';
+        $this->trigger(self::EVENT_EMAIL, $event);
+    }
+
 
 }
