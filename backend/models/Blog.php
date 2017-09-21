@@ -45,7 +45,7 @@ class Blog extends \yii\db\ActiveRecord
             'title' => '标题',
             'content' => '内容',
             'views' => '点击量',
-            'created_at' => '添加时间',
+            'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];
     }
