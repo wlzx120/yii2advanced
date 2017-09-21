@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ColumnSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '栏目管理';
+$this->title = '栏目';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="column-index">

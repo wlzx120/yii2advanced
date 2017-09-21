@@ -2,6 +2,7 @@
 
 namespace backend\models;
 
+use common\models\Column;
 use Yii;
 
 /**
@@ -16,6 +17,8 @@ use Yii;
  */
 class Blog extends \yii\db\ActiveRecord
 {
+    public $column_name;
+
     /**
      * @inheritdoc
      */
@@ -30,8 +33,9 @@ class Blog extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [[ 'content','title'], 'required'],
+            [[ 'content','title','column_id'], 'required'],
             [['content','title'], 'string'],
+            [['column_id'], 'integer'],
         ];
     }
 
@@ -44,9 +48,17 @@ class Blog extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => '标题',
             'content' => '内容',
+            'column_id' => '栏目',
             'views' => '点击量',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
         ];
     }
+
+    //blog-column 关联
+    public function getColumn()
+    {
+        return $this->hasOne(Column::className(),['id'=>'column_id']);
+    }
+
 }

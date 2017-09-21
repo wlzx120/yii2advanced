@@ -11,9 +11,6 @@ $this->title = 'Blogs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="blog-index">
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
         <?= Html::a('创建 Blog', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -21,14 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'title',
+            ['attribute'=>'column_name',
+                'label'=>'栏目',
+                'value'=>'column.name',
+            ],
             'views',
-            // 'created_at',
-            // 'updated_at',
-
+            'created_at',
+            'updated_at',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

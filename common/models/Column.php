@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use backend\models\Blog;
 use Yii;
 
 /**
@@ -31,9 +32,6 @@ class Column extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['name'], 'string', 'max' => 255],
             [['created_at', 'updated_at'], 'string', 'max' => 11],
-
-            [['file', 'file2'], 'required'],
-            [['file', 'file2'], 'safe'],
             [['file'], 'string', 'max' => 255],
 
         ];
@@ -50,6 +48,12 @@ class Column extends \yii\db\ActiveRecord
             'created_at' => '添加时间',
             'updated_at' => '更新时间t',
         ];
+    }
+
+    // column-blog 关联
+    public function getColumn()
+    {
+        return $this->hasMany(Blog::className(),['column_id'=>'id']);
     }
 
 }

@@ -18,8 +18,8 @@ class BlogSearch extends Blog
     public function rules()
     {
         return [
-            [['id', 'views'], 'integer'],
-            [['title', 'content', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'views','column_id'], 'integer'],
+            [['title', 'content', 'created_at', 'updated_at','column_name'], 'safe'],
         ];
     }
 
@@ -42,11 +42,13 @@ class BlogSearch extends Blog
     public function search($params)
     {
         $query = Blog::find();
-
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 5,
+            ],
         ]);
 
         $this->load($params);
@@ -57,6 +59,9 @@ class BlogSearch extends Blog
             return $dataProvider;
         }
 
+        //联表查询
+        $query->joinWith(['column']);
+        $query->select('blog.*,column.name');
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
@@ -67,6 +72,13 @@ class BlogSearch extends Blog
 
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'content', $this->content]);
+        //联表查询条件
+        $query->andFilterWhere(['like','column.name', $this->column_name]);
+        $dataProvider->sort->attributes['column_name'] =
+            [
+                'asc'=>['column.name'=>SORT_ASC],
+                'desc'=>['column.name'=>SORT_DESC],
+            ];
 
         return $dataProvider;
     }
