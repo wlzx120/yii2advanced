@@ -14,6 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'column_id')->dropDownList(
+        $model->getAllColumns(), ['prompt' => '请选择']
+    ) ?>
+
     <?= $form->field($model, 'content')->widget('common\widgets\ueditor\Ueditor',[
         'options'=>[
             'initialFrameWidth' => '100%',

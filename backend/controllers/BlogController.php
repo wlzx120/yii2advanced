@@ -5,10 +5,12 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Blog;
 use backend\models\BlogSearch;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Column;
 
 /**
  * BlogController implements the CRUD actions for Blog model.
@@ -25,7 +27,7 @@ class BlogController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index','view','create','update','delete','ueditor'],
+                        'actions' => ['index','view','create','update','delete','ueditor','delete-all'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -134,6 +136,17 @@ class BlogController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDeleteAll()
+    {
+        if($ids = Yii::$app->request->post('ids')){
+            if(Blog::deleteAll(['id'=>$ids])){
+                return '删除成功';
+            };
+        }
+
+        //return $this->redirect(['index']);
     }
 
     /**

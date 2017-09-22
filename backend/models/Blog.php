@@ -55,6 +55,12 @@ class Blog extends \yii\db\ActiveRecord
         ];
     }
 
+    //获取所有column
+    public function getAllColumns()
+    {
+        return Column::find()->select(['name','id'])->indexBy('id')->asArray()->column();
+    }
+
     //blog-column 关联
     public function getColumn()
     {

@@ -11,7 +11,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Blogs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="blog-create">
-
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
